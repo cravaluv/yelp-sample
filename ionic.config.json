@@ -1,0 +1,7 @@
+{
+  "name": "itc-task",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,17 @@
+
+
+  <ion-card>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img [src]="review?.user.image_url">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{review?.user.name}}</h3>
+        <p>{{review.time_created}}</p>
+        <p><b>Rating: {{review.rating}}</b></p>
+      </ion-label>
+    </ion-item>
+    <ion-card-content>
+      {{review.text}}
+    </ion-card-content>
+  </ion-card>

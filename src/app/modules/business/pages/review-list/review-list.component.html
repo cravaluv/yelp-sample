@@ -1,0 +1,14 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>List of example reviews</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="ion-padding">
+  <app-business-review *ngFor="let review of reviews" [review]="review"></app-business-review>
+  <div *ngIf="reviewsLoaded && reviews.length == 0">
+    No reviews available for this business. 
+  </div>
+</ion-content>

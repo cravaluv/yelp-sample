@@ -1,0 +1,53 @@
+<!-- <app-filter-menu></app-filter-menu> -->
+
+<ion-toolbar>
+  <ion-title>Business list</ion-title>
+</ion-toolbar>
+
+<ion-toolbar *ngIf="hiddenFilters">
+  <ion-button size="small" expand="block" (click)="showFilters()">
+    <ion-icon name="chevron-down-outline"></ion-icon> Show Filters
+  </ion-button>
+</ion-toolbar>
+<ion-toolbar *ngIf="!hiddenFilters">
+  <ion-grid>
+    <ion-row>
+      <ion-col >
+        <ion-searchbar [(ngModel)]="searchBusiness.term" placeholder="Term i.e. food or restaurant"></ion-searchbar>
+      </ion-col>
+      <ion-col size="auto">
+
+        <ion-button size="small" expand="block" (click)="presentModal()">
+
+          <ion-icon name="options"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col >
+        <ion-searchbar [(ngModel)]="searchBusiness.location" (ngModelChange)="searchBusiness.latitude = null; searchBusiness.longitude = null" placeholder="Location"></ion-searchbar>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button size="small" expand="block" (click)="getGeolocation()">
+          <ion-icon name="navigate-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+  <ion-button size="small" expand="block" (click)="clickedSearch()">
+    <ion-icon name="search"></ion-icon> Search
+  </ion-button>
+</ion-toolbar>
+
+<ion-content fullscreen *ngIf="businessList.length > 0">
+
+  <app-business-card *ngFor="let business of businessList" [business]="business" (businessClick)="onBusinessClick($event)"></app-business-card>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,17 @@
+<ion-card (click)="businessClicked()">
+  <img [src]="business?.image_url"/>
+  <ion-card-header>
+    <ion-card-subtitle>{{business?.location.city}}, {{business?.location.address1}}</ion-card-subtitle>
+    <ion-card-title>{{business?.name}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-chip>
+      <ion-icon name="heart" color="success"></ion-icon>
+      <ion-label>Rating: {{business?.rating}}</ion-label>
+    </ion-chip>
+    <ion-chip>
+      <ion-icon name="chatbubble-outline" color="primary"></ion-icon>
+      <ion-label>Reviews: {{business?.review_count}}</ion-label>
+    </ion-chip>
+  </ion-card-content>
+</ion-card>

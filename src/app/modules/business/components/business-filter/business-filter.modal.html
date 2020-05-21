@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Business filters</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="filterForm">
+    <ion-item>
+      <ion-label>Price</ion-label>
+      <ion-select multiple="true" formControlName="price" cancelText="Cancel" okText="Apply">
+        <ion-select-option *ngFor="let price of prices" [value]="price.value">{{price.label}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Distance</ion-label>
+      <ion-select formControlName="distance" cancelText="Cancel" okText="Apply">
+        <ion-select-option *ngFor="let distance of distances" [value]="distance.value">{{distance.label}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Open now</ion-label>
+      <ion-toggle formControlName="openNow" slot="end" name="grape" color="tertiary"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Open at</ion-label>
+      <ion-datetime formControlName="openAt" displayFormat="D MMM YYYY H:mm" [min]="currentDateISO"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sort by</ion-label>
+      <ion-select formControlName="sortBy" cancelText="Cancel" okText="Apply">
+        <ion-select-option *ngFor="let option of sortOptions" [value]="option.value">{{option.label}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </form>
+
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="clearFilters()">Clear</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="success" expand="block" (click)="onSubmit()">Apply</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
